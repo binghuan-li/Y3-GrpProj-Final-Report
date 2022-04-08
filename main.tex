@@ -1,0 +1,99 @@
+\documentclass[10pt,twocolumn]{scrartcl}
+\usepackage[a4paper,right=1.5cm, left=1.5cm, top=1.5cm, bottom=2cm]{geometry}
+\setlength{\parskip}{1em}
+\newcommand{\angstrom}{\textup{\AA}}
+\usepackage{lipsum}
+\usepackage[pdftex]{graphicx} 
+\usepackage{url} 
+\usepackage{lipsum} 
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{multicol}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{chemformula}
+
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{color, listings}
+\usepackage{bigfoot}
+\usepackage[framed]{matlab-prettifier}
+\let\ph\mlplaceholder % shorter macro
+\lstMakeShortInline"
+\lstset{
+  style              = Matlab-editor,
+  basicstyle         = \small\mlttfamily,
+  escapechar         = ",
+  mlshowsectionrules = true,
+}
+
+\usepackage[font={small,it}]{caption}
+\captionsetup[figure]{format=plain}
+
+\usepackage[sorting=none]{biblatex} %Imports biblatex package
+\addbibresource{references.bib}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{0,0,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage{mathtools}
+\renewenvironment{abstract}
+ {\quotation\large\noindent\rule{\linewidth}{.5pt}\par\smallskip
+  {\centering\bfseries\abstractname\par}\medskip}
+ {\par\noindent\rule{\linewidth}{.5pt}\endquotation}
+ 
+% hyperref color
+%\usepackage{xcolor}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\usepackage{hyperref}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour,,citecolor=black }
+
+\usepackage{float}
+
+\usepackage{adjustbox}
+
+\usepackage[title]{appendix}
+
+
+\begin{document}
+\renewcommand{\refname}{References}
+\input{tex/title.tex} 
+\twocolumn[
+\begin{@twocolumnfalse}
+	\title{Microneedle Biosensors for Measurement of Biomarkers for Sepsis and Modelling of Electron Transfer in Aptamer-based Biosensors}
+	\begin{center}
+	    \author{Binghuan Li, Safiyya Musa, Anastasia Sysoeva, Danielle Tan, James Tang, \\ Peter Xie}    
+	\end{center}
+\maketitle
+\begin{abstract}
+Sepsis is defined as a life-threatening organ dysfunction caused by a dysregulated host response to infection. It is one of the primary causes of death among the critically ill. Hence, early diagnosis is vital to avoid delay in starting appropriate treatment \cite{teggert2020biomarkers}. Electrochemical MN biosensors have the capability for continuous monitoring of sepsis biomarkers in the ISF in a minimally invasive manner. In this report, we have comprehensively evaluated and researched microneedle-based diagnostic platforms and assess various translational challenges for them to be widely adopted for diagnosis of sepsis. We have studied three sepsis biomarkers, nitrite, hydrogen peroxide, and lactate using different electrochemical techniques. Linear calibrations with sensitivity values of $2nA/\mu M$ for nitrite were obtained, using differential pulse voltammetry. The effects of albumin interference was also tested. Hydrogen peroxide in concentrations of 0 to 300uM was measured using chronoamperometry. Linear calibrations obtained from coulometry showed significant increase in charge with increasing hydrogen peroxide concentration. Lactate measured using amperometry with a rotating-disk-electrode (RDE) instrumentation and using lactate oxidase as the coating enzyme optimised our detection range of lactate concentrations covering both healthy and septic levels. In this project, we present a modelling framework for the analysis of chronoamperometric experiments performed on aptamer-based biosensors. This model presents a novel numerical inverse laplace algorithm, capable of decomposing representative values of rate constants ($k_{A}$ and $k_{AT}$) \cite{arroyo2018subsecond}. Extensive parameter optimisation and testing has been performed to evaluate the accuracy of the multiexponential decomposition algorithm using simulated data with representative noise levels. We then create a physical coarse-grained model of the aptamer in it's target bound and unbound configurations. Future work on modelling the chemical and physical behaviors of the aptamer  will help scientists in this field to better assess the performance of specific aptamers in molecular sensing.
+\end{abstract}
+\end{@twocolumnfalse}]
+\input{tex/introduction.tex} 
+
+\newpage
+\input{tex/background.tex}
+
+\newpage
+\input{tex/methods.tex}
+
+\newpage
+\input{tex/results.tex}
+
+\newpage
+\input{tex/discussion.tex}
+
+\newpage
+\input{tex/conclusion.tex}
+
+
+\thispagestyle{empty}
+\input{tex/appendix.tex}
+\newpage
+\printbibliography
+\end{document}
