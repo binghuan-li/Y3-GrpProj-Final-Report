@@ -51,7 +51,7 @@ dT residue, which provides resistance to serum exonucleases \cite{dass2002cellul
 \subsection{Electrochemical Detection of Nitrite Investigations} 
 \textit{Aim: To Establish baseline ability of electrode to sense nitrite in ideal conditions, between concentrations of 4-20$\mu$M (Nitrite in PBS). Serum nitrite concentrations in healthy individuals is around 1.7 $\mu$M, whereas patients infected with sepsis have higher concentrations.} \\\\
 Nitrite Investigation Summary:
-Differential Pulse Voltammetry (DPV) on nitrite solutions performed using the apparatus setup in Figure 1 with a 2 mm gold electrode (CHI101) as the working electrode (WE), platinum wire (CHI115) as the counter electrode (CE) and Ag/AgCl electrode (CHI111) as the reference electrode (RE). The blank electrolyte was pH 7.4 phosphate – buffered saline (PBS). The WE were polished with alumina slurry. WE is then washed with deionised water and sonicated in ethanol. DPV was performed using the Palm Sens Emstat3 potentiostat with default parameters adjusted experimentally for performance.
+Differential Pulse Voltammetry (DPV) on nitrite solutions performed using the apparatus setup in Figure 1 with a 2 mm gold electrode (CHI101) as the working electrode (WE), platinum wire (CHI115) as the counter electrode (CE) and Ag/AgCl electrode (CHI111) as the reference electrode (RE). The blank electrolyte was pH 7.4 phosphate – buffered saline (PBS). The WE were polished with alumina slurry. WE is then washed with deionised water and sonicated in ethanol. DPV was performed using the PalmSens Emstat3 potentiostat with default parameters adjusted experimentally for performance.
 \subsection{Reusable Gold Electrode Cleaning (Essential between Experiments)}
 \begin{enumerate}
     \item Place three MicroCloth polishing pads (Buehler) into three Petri dishes
@@ -233,6 +233,16 @@ In IviumSoft\textsuperscript{\copyright}, run chrono amperometry scanning under 
 %=====================================================================================
 \newpage
 \section{Hydrogen Peroxide Coulometry} \label{app:h2o2_coulometry}
+\noindent Coulometry serves as a powerful tool to amplify the signal as well as reduce the noise through integrating the amperometry current data with respect to time. By Anson equation \cite{Anson1966}, the charge can be expressed as an integral of current, as shown in \autoref{eqn:anson}. 
+\begin{equation}\label{eqn:anson}
+    Q(t) = \int_{t_{1}}^{t_{2}}i(t) \mathrm{d}t = \frac{nFA\sqrt{D}\sqrt{t}}{\sqrt{r}}C_{\infty}
+\end{equation}
+where $n$ is the number of charge transferred in the reaction, $D$ is the diffusion coefficient, $r$ is the radius of the working electrode and $A$ is the area of the working electrode.\\\\
+Based on Anson equation, an improved Anson equation was proposed by Flanagan \textit{et al} \cite{Flanagan1973} by considering the edge-effect in the experiment, shown in \autoref{eqn:improved_anson}.
+\begin{equation}\label{eqn:improved_anson}
+    Q(t) = \frac{nFA\sqrt{D}}{\sqrt{\pi}}C_{A}\bigg( \sqrt{t}+\frac{1.92\sqrt{D}}{r}t\bigg)
+\end{equation}
+\noindent The realisation of coulometry is shown in the listing below.
 \lstinputlisting{Code/coulometry.m}
 
 %=====================================================================================
@@ -346,6 +356,53 @@ For plots sampled at current on the rising portion of the Levich plot, extrapola
 We can use Koutecy-Levich studies to observe the differences in enzyme kinetics for LOX and LDH sensors and make informed decisions, based on the kinetic parameters, which is a more accurate representation of live interstitial lactate levels.
 %=====================================================================================
 \newpage
+\section{Aptamer Multiexponential Current Derivation}
+\label{Aptamer_multiexp}
+In this study, we assume the aptamer state as being a distribution of two states, bound and unbound. Binding-induced conformation change in the aptamer increases the electron transfer rate from $k_{A}$ to $k_{AT}$ (Fig. \ref{aptamerrate}). It is hypothesized that target binding causes an
+increase of the efficiency of electron transfer (ET) between the
+electrode and the redox reporter as they are moved closer together \cite{farjami2011off} (Methylene Blue \cite{arroyo2018subsecond}).\\\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 1.0\textwidth]{img/aptamerdiagram2.png}
+    \caption{Aptamer Electron transfer rate. Increases due to Target binding to the Aptamer.\cite{arroyo2018subsecond}}
+    \label{aptamerrate}
+\end{figure}
+Target ([T]) binding to the Aptamer ([A]), forms the aptamer-ligand complex ([AT]) as shown in the following chemical reaction:
+\begin{align}
+\cee{[A] + [T]  &<=> [AT]} 
+\end{align}
+The binding rate of the target to the aptamer is $k_{on}$ and the off-binding rate of the target to the aptamer is $k_{off}$. Assuming the system is in equilibrium, the rate of the forward reaction is equal to the rate of the backward reaction:
+\begin{equation}
+k_{on}[A][T] = k_{off}[AT]
+\end{equation}
+Using the conservation of mass for the total aptamer concentrations:
+\begin{equation}
+[A_{0}] = [A] + [AT]
+\end{equation}
+Faradaic reduction of the methylene blue reporter to leucomethylene blue occurs during chronoamperometric detection
+ \cite{zhan1990mechanisms}:
+\begin{align}
+\cee{MB^{+} + 2e^{-} + H^{+}  &-> LMB} 
+\end{align}
+Electron transfer empirically follows a first order rate reaction \cite{bard1983electrochemical, forster1994electrochemistry}. Therefore the output current follows an exponential decay.
+% $$ k_{ET} = -\frac{d[e^{-}]}{dt} $$
+% $$ \therefore [e^{-}] = e^{-k_{ET}t} $$
+
+\subsection{Chronoamperometric Signal}
+Upon a step wave excitation in potential during chronoamperometry, the output current is a sum of exponential decay signals \cite{arroyo2018subsecond}, one due to the bound aptamer, and another due to the unbound aptamer, with the relative contributions of the exponential decays to be equal to the concentrations of the bound and unbound aptamers respectively. The two exponential decay components are likely to be a distribution, centered at the mean average value. Modelling the rate constants 'k' as a probability distribution would more physically represent the physical scenario.
+$$ \frac{i}{nFA} = [AT]e^{-k_{AT}t} + [A]e^{-k_{A}t} $$
+Deriving the expressions for the concentrations of the bound and unbound aptamer configurations as functions of the total aptamer concentration - we use equations (2) and (3) to derive [AT]:
+$$ [AT] = \frac{k_{on}[T][A_{0}-AT]}{k_{off}} $$
+$$ [AT] = \frac{k_{on}[T][A_{0}]}{k_{off}} - \frac{k_{on}[T][AT]}{k_{off}} $$
+$$ [AT](1+\frac{k_{on}[T]}{k_{off}}) = \frac{k_{on}[T][A_{0}]}{k_{off}} $$
+$$  [AT] = \frac{k_{on}[T]}{k_{off}+k_{on}[T]}[A_{0}] $$
+Using a similar method, we can get an expression for [A], concentration of the unbound aptamer. Alternatively, we can calculate [A] using the conservation of mass formula, where [A] = [$A_{0}$]-[AT]:
+$$ [A] = \frac{k_{off}}{k_{off}+k_{on}[T]}[A_{0}] $$
+Final equation for the output current:\\\\
+\begin{equation}
+\frac{i}{nFA} = \frac{k_{on}[T]}{k_{on}[T]+k_{off}}e^{-k_{AT}t} + \frac{k_{off}}{k_{on}[T]+k_{off}}e^{-k_{A}t}
+\end{equation}
+\clearpage
 \section{Aptamer Modelling Code} \label{app:apt_mod}
 \subsection{Multiexponential Rate Extraction Code}
 \lstinputlisting{Code/Rate_res_testing.m}
@@ -353,7 +410,7 @@ We can use Koutecy-Levich studies to observe the differences in enzyme kinetics 
 \subsection{Numerical Inverse Laplace Solver}
 \lstinputlisting{Code/iLaplace.m}
 \newpage
-\subsection{DNA Modelling}
+\subsection{Coarse-grained Aptamer Modelling}
 \lstinputlisting{Code/Chain_sim_bound_unbound_v3.m}
 \newpage
 \subsection{Probability from DNA length Model}

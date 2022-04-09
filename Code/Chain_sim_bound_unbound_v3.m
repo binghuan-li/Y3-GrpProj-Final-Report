@@ -1,4 +1,4 @@
-%% Simulating DNA chain as random kinks that are 'self avoiding' to get
+%% Simulating Aptamers using Freely-jointed chain model
 clear all
 close all
 clc
