@@ -2,4 +2,12 @@
 Year 3 group project (2021-2022), Dept. of Bioengineering, Imperial College London<br>
 
 SUPERVISOR:     Professor Danny O'Hare <br>
-GROUP MEMEBER:  Binghuan Li <binghuan.li19@imperial.ac.uk>, Safiyya Musa, Anastasia Sysoeva, Danielle Tan, James Tang, Peter Xie
+GROUP MEMEBER:  
+<ul>
+  <li>Binghuan Li <binghuan.li19@imperial.ac.uk> </li>
+  <li>Safiyya Musa</li>
+  <li>Anastasia Sysoeva</li>
+  <li>Danielle Tan</li>
+  <li>James Tang</li>
+  <li>Peter Xie</li>
+</ul>
