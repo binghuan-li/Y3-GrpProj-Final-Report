@@ -1,8 +1,10 @@
 ## Microneedle Biosensors for Measurement of Biomarkers for Sepsis and Modelling of Electron Transfer in Aptamer-based Biosensors
-Year 3 group project (2021-2022), Dept. of Bioengineering, Imperial College London<br>
+
+
+A Project Report Submitted in Partial Fulfilment of the <b>MEng Biomedical Engineering</b> and <b>Intercalated BSc Medical Sciences with Biomedical Engineering</b> Degree
 
 ### Supervisor
-Professor Danny O'Hare
+Professor Danny O'Hare <d.ohare@imperial.ac.uk>
 
 ### Group Member
 <ul>
