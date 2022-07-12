@@ -8,7 +8,7 @@ Professor Danny O'Hare <d.ohare@imperial.ac.uk>
 
 ### Group Member
 <ul>
-  <li>Binghuan Li <binghuan.li19@imperial.ac.uk> </li>
+  <li>Binghuan Li <a href="mailto:binghuan.li19@imperial.ac.uk">binghuan.li19@imperial.ac.uk</a> </li>
   <li>Safiyya Musa</li>
   <li>Anastasia Sysoeva</li>
   <li>Danielle Tan</li>
